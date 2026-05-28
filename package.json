@@ -1,0 +1,23 @@
+{
+  "name": "itqan",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <a href=\"https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/releases\"><img src=\"https://img.shields.io/github/v/release/nextlevelbuilder/ui-ux-pro-max-skill?style=for-the-badge&color=blue\" alt=\"Release\"></a>   <img src=\"https://img.shields.io/badge/reasoning_rules-161-green?style=for-the-badge\" alt=\"161 Reasoning Rules\">   <img src=\"https://img.shields.io/badge/UI_styles-67-purple?style=for-the-badge\" alt=\"67 UI Styles\">   <img src=\"https://img.shields.io/badge/python-3.x-yellow?style=for-the-badge&logo=python&logoColor=white\" alt=\"Python 3.x\"> </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:43205/git/R4reni/ITQAN"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.95",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.40.0",
+    "tailwind-merge": "^3.6.0"
+  }
+}
