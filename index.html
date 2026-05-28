@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Itqan AI — Precision in ServiceNow & ITSM Consulting</title>
+  <meta name="description" content="Itqan AI delivers specialist ServiceNow and Halo ITSM consulting across Saudi Arabia and the Gulf. Arabic-first. AWS-hosted. NDMO-compliant." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Spline viewer -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest:  { DEFAULT: '#1A5C3A', light: '#2A7A50', dark: '#0F3A24' },
+            gold:    { DEFAULT: '#C8A84B', light: '#E2C56A', dark: '#9A7D32' },
+            ink:     { DEFAULT: '#0A0F0D', card: '#0E1812', surface: '#121F17' },
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body:    ['Inter', 'sans-serif'],
+            arabic:  ['Cairo', 'sans-serif'],
+          },
+          animation: {
+            'float':      'float 6s ease-in-out infinite',
+            'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+            'fade-up':    'fadeUp 0.7s ease forwards',
+            'count-up':   'countUp 2s ease forwards',
+            'shimmer':    'shimmer 2s linear infinite',
+          },
+          keyframes: {
+            float:     { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+            glowPulse: { '0%,100%': { opacity: '0.6' }, '50%': { opacity: '1' } },
+            fadeUp:    { from: { opacity: '0', transform: 'translateY(24px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            shimmer:   { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+          },
+          backdropBlur: { xs: '2px' },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ─── Base ─── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0A0F0D;
+      color: #EAE6DF;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── Islamic Geometric Pattern ─── */
+    .geo-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cdefs%3E%3Cpattern id='g' width='80' height='80' patternUnits='userSpaceOnUse'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z' fill='none' stroke='%231A5C3A' stroke-width='0.5' opacity='0.25'/%3E%3Cpath d='M40 10 L70 40 L40 70 L10 40 Z' fill='none' stroke='%23C8A84B' stroke-width='0.3' opacity='0.15'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23C8A84B' opacity='0.1'/%3E%3Ccircle cx='0'  cy='0'  r='2' fill='%231A5C3A' opacity='0.12'/%3E%3Ccircle cx='80' cy='0'  r='2' fill='%231A5C3A' opacity='0.12'/%3E%3Ccircle cx='0'  cy='80' r='2' fill='%231A5C3A' opacity='0.12'/%3E%3Ccircle cx='80' cy='80' r='2' fill='%231A5C3A' opacity='0.12'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='80' height='80' fill='url(%23g)'/%3E%3C/svg%3E");
+    }
+
+    /* ─── Glassmorphism ─── */
+    .glass {
+      background: rgba(26, 92, 58, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(200, 168, 75, 0.12);
+    }
+    .glass-card {
+      background: rgba(14, 24, 18, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(200, 168, 75, 0.15);
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(200, 168, 75, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,168,75,0.1);
+    }
+
+    /* ─── Gold gradient text ─── */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #C8A84B 0%, #E2C56A 40%, #9A7D32 70%, #C8A84B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .text-green-gradient {
+      background: linear-gradient(135deg, #2A7A50 0%, #3DAA6E 50%, #1A5C3A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Glow orbs ─── */
+    .orb {
+      border-radius: 50%;
+      filter: blur(80px);
+      position: absolute;
+      pointer-events: none;
+    }
+    .orb-green { background: radial-gradient(circle, rgba(26,92,58,0.5) 0%, transparent 70%); }
+    .orb-gold  { background: radial-gradient(circle, rgba(200,168,75,0.3) 0%, transparent 70%); }
+
+    /* ─── Nav ─── */
+    nav { transition: background 0.3s ease, box-shadow 0.3s ease; }
+    nav.scrolled {
+      background: rgba(10,15,13,0.92) !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(200,168,75,0.1);
+    }
+    .nav-link {
+      position: relative;
+      color: rgba(234,230,223,0.75);
+      transition: color 0.2s ease;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: #C8A84B;
+      transition: width 0.2s ease;
+    }
+    .nav-link:hover { color: #C8A84B; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      background: linear-gradient(135deg, #1A5C3A, #2A7A50);
+      border: 1px solid rgba(200,168,75,0.3);
+      color: #E2C56A;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #2A7A50, #3DAA6E);
+      border-color: #C8A84B;
+      box-shadow: 0 0 24px rgba(200,168,75,0.25);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      border: 1px solid rgba(200,168,75,0.35);
+      color: #C8A84B;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-ghost:hover {
+      background: rgba(200,168,75,0.08);
+      border-color: #C8A84B;
+      box-shadow: 0 0 16px rgba(200,168,75,0.15);
+    }
+
+    /* ─── Section divider ─── */
+    .divider-gold {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,168,75,0.4), transparent);
+    }
+
+    /* ─── Stat counter ─── */
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: #C8A84B;
+      line-height: 1;
+    }
+
+    /* ─── Service icon ring ─── */
+    .icon-ring {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(26,92,58,0.2);
+      border: 1px solid rgba(200,168,75,0.25);
+    }
+
+    /* ─── Market badge ─── */
+    .market-badge {
+      background: rgba(200,168,75,0.1);
+      border: 1px solid rgba(200,168,75,0.25);
+      border-radius: 9999px;
+      padding: 2px 12px;
+      font-size: 0.75rem;
+      color: #C8A84B;
+      font-weight: 500;
+    }
+
+    /* ─── Scroll reveal ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Spline container ─── */
+    spline-viewer { width: 100%; height: 100%; }
+
+    /* ─── Arabic RTL ─── */
+    [dir="rtl"] { font-family: 'Cairo', sans-serif; }
+    [dir="rtl"] .nav-link::after { right: 0; left: auto; }
+
+    /* ─── Mobile menu ─── */
+    #mobile-menu {
+      display: none;
+      background: rgba(10,15,13,0.97);
+      border-bottom: 1px solid rgba(200,168,75,0.15);
+    }
+    #mobile-menu.open { display: block; }
+
+    /* ─── Timeline connector ─── */
+    .timeline-line {
+      position: absolute;
+      left: 27px; top: 56px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.4), transparent);
+    }
+
+    /* ─── Shimmer loading ─── */
+    .shimmer-text {
+      background: linear-gradient(90deg, #C8A84B 0%, #E2C56A 25%, #C8A84B 50%, #9A7D32 75%, #C8A84B 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 inset-x-0 z-50 py-4 px-6 lg:px-12 flex items-center justify-between">
+  <!-- Logo -->
+  <a href="#" class="flex items-center gap-3 group">
+    <img src="logo.png" alt="Itqan AI" class="h-10 w-auto" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='flex'" />
+    <div id="logo-text" style="display:none" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-forest flex items-center justify-center">
+        <span class="text-gold font-heading font-bold text-sm">إ</span>
+      </div>
+      <div>
+        <div class="text-gold font-heading font-semibold text-lg leading-none">ITQAN AI</div>
+        <div class="text-xs text-gold/60 leading-none mt-0.5">إتقان</div>
+      </div>
+    </div>
+  </a>
+
+  <!-- Desktop Nav -->
+  <div class="hidden lg:flex items-center gap-8">
+    <a href="#services"  class="nav-link">Services</a>
+    <a href="#why-us"   class="nav-link">Why Itqan</a>
+    <a href="#markets"  class="nav-link">Markets</a>
+    <a href="#partners" class="nav-link">Partners</a>
+    <a href="#contact"  class="nav-link">Contact</a>
+  </div>
+
+  <!-- CTA + Language Toggle -->
+  <div class="hidden lg:flex items-center gap-3">
+    <button onclick="toggleLang()" class="btn-ghost text-xs px-4 py-2 rounded-full">
+      <span id="lang-btn">عربي</span>
+    </button>
+    <a href="#contact" class="btn-primary text-sm px-5 py-2 rounded-full">
+      Book a Discovery Call
+    </a>
+  </div>
+
+  <!-- Mobile hamburger -->
+  <button id="menu-toggle" class="lg:hidden text-gold/80" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed top-[72px] inset-x-0 z-40 px-6 py-4 flex flex-col gap-4">
+  <a href="#services"  class="nav-link py-2" onclick="document.getElementById('mobile-menu').classList.remove('open')">Services</a>
+  <a href="#why-us"   class="nav-link py-2" onclick="document.getElementById('mobile-menu').classList.remove('open')">Why Itqan</a>
+  <a href="#markets"  class="nav-link py-2" onclick="document.getElementById('mobile-menu').classList.remove('open')">Markets</a>
+  <a href="#partners" class="nav-link py-2" onclick="document.getElementById('mobile-menu').classList.remove('open')">Partners</a>
+  <a href="#contact"  class="nav-link py-2" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+  <a href="#contact"  class="btn-primary text-sm px-5 py-2.5 rounded-full text-center mt-2">Book a Discovery Call</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="relative min-h-screen flex items-center overflow-hidden geo-pattern">
+  <!-- Ambient orbs -->
+  <div class="orb orb-green w-[600px] h-[600px] -top-32 -left-32 opacity-60 animate-float"></div>
+  <div class="orb orb-gold  w-[400px] h-[400px] top-1/2 right-0 opacity-40" style="animation: float 8s ease-in-out 2s infinite;"></div>
+  <div class="orb orb-green w-[300px] h-[300px] bottom-0 left-1/3 opacity-30" style="animation: float 10s ease-in-out 1s infinite;"></div>
+
+  <!-- Overlay gradient -->
+  <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-transparent"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-24 pb-12">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: Copy -->
+      <div class="reveal">
+        <!-- Eyebrow -->
+        <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
+          <span class="w-2 h-2 rounded-full bg-gold animate-glow-pulse"></span>
+          <span class="text-gold/90 text-sm font-medium tracking-wide">ServiceNow · Halo ITSM · Gulf Region</span>
+        </div>
+
+        <h1 class="font-heading text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] mb-6">
+          <span class="text-gold-gradient">Precision</span><br/>
+          <span class="text-[#EAE6DF]">ITSM for the</span><br/>
+          <span class="text-green-gradient">Gulf's Mid-Market</span>
+        </h1>
+
+        <p class="text-[#A8B4AC] text-lg leading-relaxed max-w-lg mb-8">
+          Itqan AI delivers specialist ServiceNow and Halo ITSM consulting
+          for organisations with 200–2,000 employees — filling the gap between
+          "too expensive" and "too basic." Arabic-first. NDMO-compliant. Architect-led on every engagement.
+        </p>
+
+        <!-- Arabic tagline -->
+        <p class="font-arabic text-gold/70 text-base mb-8 tracking-wide">
+          إتقان · الدقة في كل تنفيذ
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="btn-primary px-8 py-3.5 rounded-full text-sm font-semibold">
+            Book a Discovery Call →
+          </a>
+          <a href="#services" class="btn-ghost px-8 py-3.5 rounded-full text-sm font-semibold">
+            Our Services
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-white/5">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812z"/></svg>
+            <span class="text-[#A8B4AC] text-xs">CIS-certified consultants</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+            <span class="text-[#A8B4AC] text-xs">AWS-hosted · NDMO compliant</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+            <span class="text-[#A8B4AC] text-xs">Architect-led delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: 3D Spline Scene -->
+      <div class="relative h-[480px] lg:h-[560px] reveal" style="transition-delay: 0.2s">
+        <div class="absolute inset-0 rounded-2xl overflow-hidden glass-card">
+          <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy"></spline-viewer>
+          <!-- Spotlight overlay -->
+          <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full opacity-20" style="background: radial-gradient(circle, #C8A84B, transparent 70%); filter: blur(40px);"></div>
+          </div>
+        </div>
+        <!-- Floating badge -->
+        <div class="absolute -bottom-4 -left-4 glass px-4 py-3 rounded-xl shadow-xl">
+          <div class="text-xs text-[#A8B4AC] mb-0.5">Target Revenue by Year 3</div>
+          <div class="font-heading text-gold font-bold text-xl">$6M+ ARR</div>
+        </div>
+        <div class="absolute -top-4 -right-4 glass px-4 py-3 rounded-xl shadow-xl">
+          <div class="text-xs text-[#A8B4AC] mb-0.5">Primary Market</div>
+          <div class="font-arabic text-[#EAE6DF] font-semibold">المملكة العربية السعودية 🇸🇦</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-float">
+    <span class="text-xs text-[#A8B4AC] tracking-widest uppercase">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-gold/60 to-transparent"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     TRUST BAR
+════════════════════════════════════════ -->
+<div class="divider-gold"></div>
+<section class="bg-ink/80 py-8 px-6 lg:px-12">
+  <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-8 lg:gap-16">
+    <span class="text-xs text-[#A8B4AC] tracking-widest uppercase whitespace-nowrap">Trusted Partners</span>
+
+    <!-- ServiceNow -->
+    <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+      <div class="w-8 h-8 rounded-lg bg-[#62D84E]/10 border border-[#62D84E]/20 flex items-center justify-center">
+        <svg class="w-5 h-5" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#62D84E"/><path d="M12 20a8 8 0 1116 0 8 8 0 01-16 0z" fill="white"/></svg>
+      </div>
+      <span class="text-[#EAE6DF] font-semibold text-sm">ServiceNow</span>
+    </div>
+
+    <!-- Halo -->
+    <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+      <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+        <svg class="w-5 h-5" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#3B82F6"/><ellipse cx="20" cy="20" rx="14" ry="5" stroke="white" stroke-width="2" fill="none"/></svg>
+      </div>
+      <span class="text-[#EAE6DF] font-semibold text-sm">Halo ITSM</span>
+    </div>
+
+    <!-- AWS -->
+    <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+      <div class="w-8 h-8 rounded-lg bg-[#FF9900]/10 border border-[#FF9900]/20 flex items-center justify-center">
+        <svg class="w-5 h-5" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="6" fill="#FF9900"/><text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="8" font-weight="bold">AWS</text></svg>
+      </div>
+      <span class="text-[#EAE6DF] font-semibold text-sm">AWS Saudi Arabia</span>
+    </div>
+
+    <!-- MISA -->
+    <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+      <div class="w-8 h-8 rounded-lg bg-forest/30 border border-forest/40 flex items-center justify-center">
+        <span class="text-gold font-bold text-xs">SA</span>
+      </div>
+      <span class="text-[#EAE6DF] font-semibold text-sm">MISA Registered</span>
+    </div>
+
+    <!-- NDMO -->
+    <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+      <div class="w-8 h-8 rounded-lg bg-forest/30 border border-forest/40 flex items-center justify-center">
+        <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+      </div>
+      <span class="text-[#EAE6DF] font-semibold text-sm">NDMO Compliant</span>
+    </div>
+  </div>
+</section>
+<div class="divider-gold"></div>
+
+
+<!-- ═══════════════════════════════════════
+     THE GAP (Value Proposition)
+════════════════════════════════════════ -->
+<section class="relative py-24 px-6 lg:px-12 overflow-hidden">
+  <div class="orb orb-gold w-96 h-96 top-0 right-0 opacity-20"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="market-badge inline-block mb-4">The Mid-Market Gap</div>
+      <h2 class="font-heading text-4xl lg:text-5xl font-bold mb-4">
+        <span class="text-[#EAE6DF]">Too big for Freshservice.</span><br/>
+        <span class="text-gold-gradient">Too smart for overpaying.</span>
+      </h2>
+      <p class="text-[#A8B4AC] text-lg max-w-2xl mx-auto">
+        Gulf organisations with 200–2,000 employees are underserved.
+        Itqan fills that gap with enterprise-grade delivery at mid-market price points.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Too basic -->
+      <div class="glass-card rounded-2xl p-6 reveal">
+        <div class="text-red-400/70 text-xs font-semibold tracking-widest uppercase mb-4">Too Basic</div>
+        <h3 class="text-[#EAE6DF] font-semibold text-lg mb-3">Freshservice & Jira</h3>
+        <ul class="space-y-2 text-[#A8B4AC] text-sm">
+          <li class="flex items-center gap-2"><span class="text-red-400/70">✗</span> Limited workflow complexity</li>
+          <li class="flex items-center gap-2"><span class="text-red-400/70">✗</span> Weak CMDB & ITAM</li>
+          <li class="flex items-center gap-2"><span class="text-red-400/70">✗</span> No Arabic-native support</li>
+          <li class="flex items-center gap-2"><span class="text-red-400/70">✗</span> No KSA data residency</li>
+        </ul>
+      </div>
+
+      <!-- The Sweet Spot -->
+      <div class="relative rounded-2xl p-6 reveal" style="background: linear-gradient(135deg, rgba(26,92,58,0.3), rgba(200,168,75,0.1)); border: 1px solid rgba(200,168,75,0.35); transition-delay: 0.1s">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+          <div class="bg-gold text-ink text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">✦ Itqan's Sweet Spot</div>
+        </div>
+        <div class="text-gold text-xs font-semibold tracking-widest uppercase mb-4 mt-2">Just Right</div>
+        <h3 class="text-gold font-semibold text-lg mb-3">Halo ITSM + ServiceNow</h3>
+        <ul class="space-y-2 text-[#EAE6DF] text-sm">
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> Full ITSM/ITAM/SPM capability</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> Arabic-first UX & documentation</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> AWS KSA · NDMO data residency</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> CIS-certified architects</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> Mid-market pricing</li>
+        </ul>
+      </div>
+
+      <!-- Too expensive -->
+      <div class="glass-card rounded-2xl p-6 reveal" style="transition-delay: 0.2s">
+        <div class="text-orange-400/70 text-xs font-semibold tracking-widest uppercase mb-4">Too Expensive</div>
+        <h3 class="text-[#EAE6DF] font-semibold text-lg mb-3">Big-4 ServiceNow SI</h3>
+        <ul class="space-y-2 text-[#A8B4AC] text-sm">
+          <li class="flex items-center gap-2"><span class="text-orange-400/70">✗</span> Enterprise overhead costs</li>
+          <li class="flex items-center gap-2"><span class="text-orange-400/70">✗</span> Junior-led delivery</li>
+          <li class="flex items-center gap-2"><span class="text-orange-400/70">✗</span> 18–24 month timelines</li>
+          <li class="flex items-center gap-2"><span class="text-orange-400/70">✗</span> Scope creep & overruns</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+<section id="services" class="relative py-24 px-6 lg:px-12 geo-pattern">
+  <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 to-ink"></div>
+  <div class="relative max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="market-badge inline-block mb-4">Service Lines</div>
+      <h2 class="font-heading text-4xl lg:text-5xl font-bold text-[#EAE6DF] mb-4">
+        Four Ways We <span class="text-gold-gradient">Deliver Precision</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- ServiceNow -->
+      <div class="glass-card rounded-2xl p-8 reveal">
+        <div class="flex items-start gap-5">
+          <div class="icon-ring shrink-0">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="text-[#EAE6DF] font-semibold text-xl">ServiceNow</h3>
+              <span class="market-badge text-[10px]">PLA Year 2 + 3</span>
+            </div>
+            <p class="text-[#A8B4AC] text-sm leading-relaxed mb-4">
+              ITSM, ITAM, SPM, and CSM implementations. CIS-certified architects on every project.
+              Internal SPM runs Itqan's own operations — we eat our own cooking.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">ITSM</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">ITAM / SAM</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">SPM</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">CSM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Halo ITSM -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.1s">
+        <div class="flex items-start gap-5">
+          <div class="icon-ring shrink-0">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="text-[#EAE6DF] font-semibold text-xl">Halo ITSM</h3>
+              <span class="market-badge text-[10px]">Mid-Market Focus</span>
+            </div>
+            <p class="text-[#A8B4AC] text-sm leading-relaxed mb-4">
+              The sweet-spot platform for 200–2,000 seat organisations. Arabic-native UX,
+              AWS-hosted in KSA with full NDMO data residency compliance. Faster ROI than ServiceNow for this tier.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">Arabic UX</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">AWS KSA</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">NDMO</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">ITIL 4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PULSE Managed Services -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.2s">
+        <div class="flex items-start gap-5">
+          <div class="icon-ring shrink-0">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="text-[#EAE6DF] font-semibold text-xl">PULSE Managed Services</h3>
+              <span class="market-badge text-[10px]">Subscription</span>
+            </div>
+            <p class="text-[#A8B4AC] text-sm leading-relaxed mb-4">
+              Ongoing support, optimisation, and evolution of your ITSM platform.
+              Predictable monthly subscription covering lifecycle management, upgrades,
+              and proactive health monitoring — keeping your platform at peak performance.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">24/7 Support</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">Monthly Retainer</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">Proactive Health</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Transformation -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.3s">
+        <div class="flex items-start gap-5">
+          <div class="icon-ring shrink-0">
+            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="text-[#EAE6DF] font-semibold text-xl">AI Transformation</h3>
+              <span class="market-badge text-[10px]">The "AI" in Itqan AI</span>
+            </div>
+            <p class="text-[#A8B4AC] text-sm leading-relaxed mb-4">
+              ServiceNow Now Assist, intelligent automation, virtual agents, and predictive analytics —
+              embedding AI across your service operations to drive measurable productivity gains
+              aligned with Vision 2030 digital transformation goals.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">Now Assist</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">Virtual Agent</span>
+              <span class="text-xs bg-forest/20 border border-forest/30 px-3 py-1 rounded-full text-forest-light">Vision 2030</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     WHY ITQAN
+════════════════════════════════════════ -->
+<section id="why-us" class="relative py-24 px-6 lg:px-12 overflow-hidden">
+  <div class="orb orb-green w-[500px] h-[500px] -bottom-32 -left-32 opacity-30"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Section header + key points -->
+      <div class="reveal">
+        <div class="market-badge inline-block mb-4">Our Difference</div>
+        <h2 class="font-heading text-4xl lg:text-5xl font-bold mb-6">
+          <span class="text-[#EAE6DF]">Why Gulf CIOs</span><br/>
+          <span class="text-gold-gradient">Choose Itqan</span>
+        </h2>
+        <p class="text-[#A8B4AC] text-base leading-relaxed mb-8">
+          We built Itqan because the region's mid-market deserved better than junior consultants
+          from global SIs running playbooks designed for Fortune 500 budgets.
+        </p>
+
+        <!-- Differentiators timeline -->
+        <div class="space-y-6">
+          <div class="relative flex gap-5">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full border border-gold/40 bg-forest/20 flex items-center justify-center shrink-0 z-10">
+                <span class="text-gold font-bold text-sm">01</span>
+              </div>
+              <div class="w-px flex-1 mt-2 bg-gradient-to-b from-gold/30 to-transparent"></div>
+            </div>
+            <div class="pb-6">
+              <h4 class="text-[#EAE6DF] font-semibold mb-1">Architect-Led on Every Engagement</h4>
+              <p class="text-[#A8B4AC] text-sm leading-relaxed">CIS-certified (not just CSA) architects lead every project. No bait-and-switch to junior resources post-sale.</p>
+            </div>
+          </div>
+
+          <div class="relative flex gap-5">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full border border-gold/40 bg-forest/20 flex items-center justify-center shrink-0 z-10">
+                <span class="text-gold font-bold text-sm">02</span>
+              </div>
+              <div class="w-px flex-1 mt-2 bg-gradient-to-b from-gold/30 to-transparent"></div>
+            </div>
+            <div class="pb-6">
+              <h4 class="text-[#EAE6DF] font-semibold mb-1">Arabic-First Capability</h4>
+              <p class="text-[#A8B4AC] text-sm leading-relaxed">Delivery, documentation, and support in Arabic. Partners in Egypt and Jordan for native Arabic module delivery.</p>
+            </div>
+          </div>
+
+          <div class="relative flex gap-5">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full border border-gold/40 bg-forest/20 flex items-center justify-center shrink-0 z-10">
+                <span class="text-gold font-bold text-sm">03</span>
+              </div>
+              <div class="w-px flex-1 mt-2 bg-gradient-to-b from-gold/30 to-transparent"></div>
+            </div>
+            <div class="pb-6">
+              <h4 class="text-[#EAE6DF] font-semibold mb-1">We Run What We Sell</h4>
+              <p class="text-[#A8B4AC] text-sm leading-relaxed">Itqan's own operations — CRM, project delivery, invoicing, PULSE tracking — run on ServiceNow SPM built by our offshore team.</p>
+            </div>
+          </div>
+
+          <div class="relative flex gap-5">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full border border-gold/40 bg-forest/20 flex items-center justify-center shrink-0 z-10">
+                <span class="text-gold font-bold text-sm">04</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-[#EAE6DF] font-semibold mb-1">KSA Data Sovereignty</h4>
+              <p class="text-[#A8B4AC] text-sm leading-relaxed">AWS-hosted in Saudi Arabia with full NDMO and PDPL compliance. Your data never leaves the Kingdom.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Cards grid -->
+      <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay: 0.15s">
+        <div class="glass-card rounded-2xl p-6 text-center col-span-2">
+          <div class="text-4xl font-heading font-bold text-gold mb-2">100%</div>
+          <div class="text-[#A8B4AC] text-sm">CIS-Certified Consultant Baseline</div>
+          <div class="text-xs text-forest-light mt-1">Not just CSA — full specialist certification</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="icon-ring mx-auto mb-3">
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          </div>
+          <div class="text-[#EAE6DF] font-semibold text-sm">100 People</div>
+          <div class="text-[#A8B4AC] text-xs mt-1">Year 3 team target</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="icon-ring mx-auto mb-3">
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="text-[#EAE6DF] font-semibold text-sm">25 Projects</div>
+          <div class="text-[#A8B4AC] text-xs mt-1">Concurrent capacity Y3</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="icon-ring mx-auto mb-3">
+            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+          </div>
+          <div class="text-[#EAE6DF] font-semibold text-sm">4 Countries</div>
+          <div class="text-[#A8B4AC] text-xs mt-1">AU · UAE · KSA · IN</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="icon-ring mx-auto mb-3">
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="text-[#EAE6DF] font-semibold text-sm">2 PLAs</div>
+          <div class="text-[#A8B4AC] text-xs mt-1">ITAM Y2 + module Y3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     STATS
+════════════════════════════════════════ -->
+<section class="py-16 px-6 lg:px-12 bg-ink/60 geo-pattern">
+  <div class="absolute inset-0 bg-ink/80"></div>
+  <div class="relative max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      <div class="text-center reveal">
+        <div class="stat-number" data-target="75">0<span>%</span></div>
+        <div class="text-[#A8B4AC] text-sm mt-2">KSA Revenue Share Y3</div>
+      </div>
+      <div class="text-center reveal" style="transition-delay: 0.1s">
+        <div class="stat-number" data-target="6">$0<span>M+</span></div>
+        <div class="text-[#A8B4AC] text-sm mt-2">ARR Target Year 3</div>
+      </div>
+      <div class="text-center reveal" style="transition-delay: 0.2s">
+        <div class="stat-number" data-target="200">0<span>–2K</span></div>
+        <div class="text-[#A8B4AC] text-sm mt-2">Employee Sweet Spot</div>
+      </div>
+      <div class="text-center reveal" style="transition-delay: 0.3s">
+        <div class="stat-number" data-target="6">0</div>
+        <div class="text-[#A8B4AC] text-sm mt-2">Gulf Countries Served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     MARKETS
+════════════════════════════════════════ -->
+<section id="markets" class="relative py-24 px-6 lg:px-12 overflow-hidden">
+  <div class="orb orb-gold w-96 h-96 top-0 right-0 opacity-20"></div>
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="market-badge inline-block mb-4">Geographic Strategy</div>
+      <h2 class="font-heading text-4xl lg:text-5xl font-bold text-[#EAE6DF] mb-4">
+        <span class="text-gold-gradient">UAE First.</span> KSA for Scale.
+      </h2>
+      <p class="text-[#A8B4AC] text-lg max-w-2xl mx-auto">
+        UAE for speed and early cash flow. Saudi Arabia for the long game — 75% of revenue by Year 3.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-6">
+
+      <!-- KSA (primary) — large card -->
+      <div class="lg:col-span-3 glass-card rounded-2xl p-8 reveal" style="border-color: rgba(200,168,75,0.3)">
+        <div class="flex items-start justify-between mb-6">
+          <div>
+            <div class="text-4xl mb-3">🇸🇦</div>
+            <h3 class="font-heading text-2xl font-bold text-[#EAE6DF]">Saudi Arabia</h3>
+            <p class="text-[#A8B4AC] text-sm">المملكة العربية السعودية</p>
+          </div>
+          <div class="text-right">
+            <div class="text-gold font-heading text-3xl font-bold">75%</div>
+            <div class="text-[#A8B4AC] text-xs">Revenue Y3</div>
+          </div>
+        </div>
+        <div class="w-full bg-forest/10 rounded-full h-2 mb-6">
+          <div class="h-2 rounded-full bg-gradient-to-r from-forest to-gold" style="width: 75%"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass rounded-xl p-4">
+            <div class="text-gold font-semibold text-sm mb-1">From Year 2</div>
+            <p class="text-[#A8B4AC] text-xs">Scale operations after UAE cash flow established. MISA-registered entity ready.</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <div class="text-gold font-semibold text-sm mb-1">Vision 2030 Alignment</div>
+            <p class="text-[#A8B4AC] text-xs">Digital transformation mandate creates massive ITSM demand across government and private sector.</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <div class="text-gold font-semibold text-sm mb-1">Data Sovereignty</div>
+            <p class="text-[#A8B4AC] text-xs">AWS KSA region + NDMO + PDPL compliance built-in. Non-negotiable for KSA enterprise.</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <div class="text-gold font-semibold text-sm mb-1">Arabic-First</div>
+            <p class="text-[#A8B4AC] text-xs">Full Arabic documentation, training, and support. Delivery in Arabic where required.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gulf ex-KSA -->
+      <div class="lg:col-span-2 flex flex-col gap-4">
+
+        <div class="glass-card rounded-2xl p-6 reveal" style="transition-delay: 0.1s">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🇦🇪</span>
+              <div>
+                <div class="text-[#EAE6DF] font-semibold">UAE</div>
+                <div class="text-[#A8B4AC] text-xs">Launch Market · Y1</div>
+              </div>
+            </div>
+            <div class="market-badge">Cash Flow First</div>
+          </div>
+          <p class="text-[#A8B4AC] text-xs leading-relaxed">Dubai DED mainland LLC. Speed to first revenue. English-dominant market — faster sales cycle.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 reveal" style="transition-delay: 0.15s">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xl">🇶🇦</span>
+            <div>
+              <div class="text-[#EAE6DF] font-semibold text-sm">Qatar</div>
+              <div class="text-[#A8B4AC] text-xs">National Vision 2030 projects</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 reveal" style="transition-delay: 0.2s">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xl">🇰🇼</span>
+            <div>
+              <div class="text-[#EAE6DF] font-semibold text-sm">Kuwait</div>
+              <div class="text-[#A8B4AC] text-xs">Government & Oil sector ITSM</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 reveal" style="transition-delay: 0.25s">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xl">🇧🇭🇴🇲</span>
+            <div>
+              <div class="text-[#EAE6DF] font-semibold text-sm">Bahrain · Oman</div>
+              <div class="text-[#A8B4AC] text-xs">Financial services & diversification plays</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-4 border border-gold/15 reveal" style="transition-delay: 0.3s">
+          <div class="text-gold font-heading text-2xl font-bold">25%</div>
+          <div class="text-[#A8B4AC] text-xs">Gulf ex-KSA revenue share Y3</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PARTNERS
+════════════════════════════════════════ -->
+<section id="partners" class="relative py-24 px-6 lg:px-12 geo-pattern">
+  <div class="absolute inset-0 bg-ink/90"></div>
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="market-badge inline-block mb-4">Partner Network</div>
+      <h2 class="font-heading text-4xl font-bold text-[#EAE6DF] mb-4">
+        Built on <span class="text-gold-gradient">Strong Partnerships</span>
+      </h2>
+      <p class="text-[#A8B4AC] max-w-xl mx-auto">
+        Strategic alliances that extend our capability across geographies, modules, and delivery languages.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Australia ITAM -->
+      <div class="glass-card rounded-2xl p-6 text-center reveal">
+        <div class="text-3xl mb-3">🇦🇺</div>
+        <div class="text-[#EAE6DF] font-semibold mb-2">Australian ITAM Partner</div>
+        <div class="market-badge inline-block mb-3">ITAM / SAM Advisory</div>
+        <p class="text-[#A8B4AC] text-xs leading-relaxed">Specialist ITAM and SAM implementation and advisory. Deployed on engagements requiring deep asset management expertise.</p>
+      </div>
+
+      <!-- India -->
+      <div class="glass-card rounded-2xl p-6 text-center reveal" style="transition-delay: 0.1s">
+        <div class="text-3xl mb-3">🇮🇳</div>
+        <div class="text-[#EAE6DF] font-semibold mb-2">India ODC</div>
+        <div class="market-badge inline-block mb-3">Offshore Delivery</div>
+        <p class="text-[#A8B4AC] text-xs leading-relaxed">Offshore Delivery Centre for development, configuration, and PULSE support. Internal ServiceNow SPM built here.</p>
+      </div>
+
+      <!-- Egypt -->
+      <div class="glass-card rounded-2xl p-6 text-center reveal" style="transition-delay: 0.2s">
+        <div class="text-3xl mb-3">🇪🇬</div>
+        <div class="text-[#EAE6DF] font-semibold mb-2">Egypt Partner</div>
+        <div class="market-badge inline-block mb-3">Arabic Modules</div>
+        <p class="text-[#A8B4AC] text-xs leading-relaxed">Arabic-language module delivery and documentation. Native Arabic consulting capability for KSA government projects.</p>
+      </div>
+
+      <!-- Jordan -->
+      <div class="glass-card rounded-2xl p-6 text-center reveal" style="transition-delay: 0.3s">
+        <div class="text-3xl mb-3">🇯🇴</div>
+        <div class="text-[#EAE6DF] font-semibold mb-2">Jordan Partner</div>
+        <div class="market-badge inline-block mb-3">Technical Delivery</div>
+        <p class="text-[#A8B4AC] text-xs leading-relaxed">Additional Arabic technical delivery capability. Strong ServiceNow talent pool for project scaling and associate training.</p>
+      </div>
+    </div>
+
+    <!-- Pakistan note -->
+    <div class="glass rounded-xl p-4 mt-4 flex items-center gap-4 reveal max-w-lg mx-auto text-center" style="transition-delay: 0.35s">
+      <span class="text-2xl">🇵🇰</span>
+      <p class="text-[#A8B4AC] text-sm">Pakistan features for associate-level training and additional ODC capacity — building regional talent depth.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA SECTION
+════════════════════════════════════════ -->
+<section class="relative py-24 px-6 lg:px-12 overflow-hidden">
+  <div class="orb orb-green w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25"></div>
+  <div class="orb orb-gold  w-[400px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+
+  <div class="relative max-w-4xl mx-auto text-center reveal">
+    <div class="market-badge inline-block mb-6">Limited Engagements Available</div>
+
+    <h2 class="font-heading text-4xl lg:text-6xl font-bold mb-6">
+      <span class="text-[#EAE6DF]">Ready to build</span><br/>
+      <span class="shimmer-text">precision into your ITSM?</span>
+    </h2>
+
+    <p class="text-[#A8B4AC] text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+      Every engagement starts with a discovery call — no sales pitch, no pressure.
+      We'll tell you honestly whether Itqan is the right fit.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+      <a href="#contact" class="btn-primary px-10 py-4 rounded-full text-base font-semibold">
+        Book a Discovery Call →
+      </a>
+      <a href="mailto:hello@itqan.ai" class="btn-ghost px-10 py-4 rounded-full text-base font-semibold">
+        hello@itqan.ai
+      </a>
+    </div>
+
+    <!-- Arabic closing -->
+    <p class="font-arabic text-gold/60 text-lg">نبني الدقة في كل خطوة · إتقان</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+════════════════════════════════════════ -->
+<section id="contact" class="py-24 px-6 lg:px-12 geo-pattern">
+  <div class="absolute inset-0 bg-ink/90"></div>
+  <div class="relative max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16">
+
+      <!-- Left: contact info -->
+      <div class="reveal">
+        <div class="market-badge inline-block mb-4">Get in Touch</div>
+        <h2 class="font-heading text-4xl font-bold text-[#EAE6DF] mb-6">
+          Start the <span class="text-gold-gradient">Conversation</span>
+        </h2>
+        <p class="text-[#A8B4AC] leading-relaxed mb-8">
+          Whether you're evaluating Halo ITSM, planning a ServiceNow implementation,
+          or looking for ongoing managed services — we'd love to hear about your situation.
+        </p>
+
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="icon-ring shrink-0">
+              <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="text-[#A8B4AC] text-xs">Email</div>
+              <a href="mailto:hello@itqan.ai" class="text-[#EAE6DF] hover:text-gold transition-colors">hello@itqan.ai</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="icon-ring shrink-0">
+              <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-[#A8B4AC] text-xs">Headquarters</div>
+              <div class="text-[#EAE6DF]">Dubai, UAE · Riyadh, KSA · Sydney, AU</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="icon-ring shrink-0">
+              <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-[#A8B4AC] text-xs">Response Time</div>
+              <div class="text-[#EAE6DF]">Within 24 hours · Arabic & English</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.15s">
+        <form onsubmit="handleSubmit(event)" class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[#A8B4AC] text-xs mb-1.5">Full Name *</label>
+              <input type="text" required placeholder="Ahmed Al-Rashid"
+                class="w-full bg-ink/60 border border-white/10 rounded-xl px-4 py-3 text-[#EAE6DF] text-sm focus:outline-none focus:border-gold/40 transition-colors placeholder-white/20" />
+            </div>
+            <div>
+              <label class="block text-[#A8B4AC] text-xs mb-1.5">Organisation *</label>
+              <input type="text" required placeholder="ACME Corp"
+                class="w-full bg-ink/60 border border-white/10 rounded-xl px-4 py-3 text-[#EAE6DF] text-sm focus:outline-none focus:border-gold/40 transition-colors placeholder-white/20" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-[#A8B4AC] text-xs mb-1.5">Work Email *</label>
+            <input type="email" required placeholder="ahmed@company.com"
+              class="w-full bg-ink/60 border border-white/10 rounded-xl px-4 py-3 text-[#EAE6DF] text-sm focus:outline-none focus:border-gold/40 transition-colors placeholder-white/20" />
+          </div>
+          <div>
+            <label class="block text-[#A8B4AC] text-xs mb-1.5">I'm interested in</label>
+            <select class="w-full bg-ink/60 border border-white/10 rounded-xl px-4 py-3 text-[#EAE6DF] text-sm focus:outline-none focus:border-gold/40 transition-colors appearance-none cursor-pointer">
+              <option value="" class="bg-ink">Select a service</option>
+              <option value="halo" class="bg-ink">Halo ITSM Implementation</option>
+              <option value="snow" class="bg-ink">ServiceNow Implementation</option>
+              <option value="pulse" class="bg-ink">PULSE Managed Services</option>
+              <option value="ai" class="bg-ink">AI Transformation</option>
+              <option value="other" class="bg-ink">General enquiry</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[#A8B4AC] text-xs mb-1.5">Tell us about your situation</label>
+            <textarea rows="4" placeholder="We have ~500 staff across 3 offices and are currently using Jira Service Management. Looking for something more capable..."
+              class="w-full bg-ink/60 border border-white/10 rounded-xl px-4 py-3 text-[#EAE6DF] text-sm focus:outline-none focus:border-gold/40 transition-colors placeholder-white/20 resize-none"></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full py-3.5 rounded-xl text-sm font-semibold">
+            Send Message →
+          </button>
+          <p class="text-[#A8B4AC] text-xs text-center">We'll respond within 24 hours. No spam, ever.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="bg-ink border-t border-white/5 py-12 px-6 lg:px-12">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-forest/40 border border-gold/20 flex items-center justify-center">
+          <span class="text-gold font-heading font-bold">إ</span>
+        </div>
+        <div>
+          <div class="text-gold font-heading font-semibold text-lg leading-none">ITQAN AI</div>
+          <div class="text-xs text-gold/50 leading-none mt-0.5">إتقان · Precision in Every Delivery</div>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div class="text-[#A8B4AC] text-xs text-center">
+        © 2025 Itqan AI Pty Ltd. All rights reserved. · Dubai · Riyadh · Sydney
+        <span class="block mt-1 text-forest-light/60">MISA Registered · UAE DED Mainland LLC · NDMO Compliant</span>
+      </div>
+
+      <!-- Links -->
+      <div class="flex gap-6">
+        <a href="#services"  class="text-[#A8B4AC] hover:text-gold text-sm transition-colors">Services</a>
+        <a href="#markets"   class="text-[#A8B4AC] hover:text-gold text-sm transition-colors">Markets</a>
+        <a href="#contact"   class="text-[#A8B4AC] hover:text-gold text-sm transition-colors">Contact</a>
+        <a href="mailto:hello@itqan.ai" class="text-[#A8B4AC] hover:text-gold text-sm transition-colors">hello@itqan.ai</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+<script>
+  // ── Nav scroll effect ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Language toggle ──
+  let isAr = false;
+  function toggleLang() {
+    isAr = !isAr;
+    document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', isAr ? 'ar' : 'en');
+    document.getElementById('lang-btn').textContent = isAr ? 'English' : 'عربي';
+  }
+
+  // ── Scroll reveal ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Form submit ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '✓ Message sent!';
+    btn.style.background = 'linear-gradient(135deg, #1A5C3A, #2A7A50)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+
+  // ── Trigger initial reveals ──
+  window.dispatchEvent(new Event('scroll'));
+</script>
+
+</body>
+</html>
